@@ -1,1 +1,1 @@
-# Proiect-CV1
+# Computer Vision Project - Hands Clasification
