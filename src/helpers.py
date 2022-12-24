@@ -31,3 +31,18 @@ def hand_contour(img, img_orig):
 
 def crop_img(img, rect):
     return img[rect[1]:(rect[1] + rect[3]), rect[0]:(rect[0] + rect[2])]
+
+def get_dimensions_for_resize(dataset_train, dataset_test):
+    min_w = 0
+    min_h = 0
+    for img in dataset_train:
+        if np.shape(img)[1] > min_w:
+            min_w = np.shape(img)[1]
+            min_h = np.shape(img)[0]
+
+    for img in dataset_test:
+        if np.shape(img)[1] > min_w:
+            min_w = np.shape(img)[1]
+            min_h = np.shape(img)[0]
+
+    return min_w, min_h

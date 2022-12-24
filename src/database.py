@@ -19,24 +19,28 @@ def get_train_and_test_dataset(dataset_dir, percent, scale_factor):
     labels_test = []
 
     # get random indexes
-    random.seed(42)
+    random.seed(42) #42
     indexes = random.sample(range(0, 9), percent)
 
     # read all data and split in train and set based on random indexes
     for class_index in range(len(glob.glob(dataset_dir + '/*'))):
         for index, path in enumerate(glob.glob(dataset_dir + '/' + str(class_index) + '/*')):
             img_original = io.imread(path)
+
             # img_original = helpers.rgb2gray(img_original)
             new_h = int(np.shape(img_original)[0] * scale_factor)
             new_w = int(np.shape(img_original)[1] * scale_factor)
+            img_original = resize(img_original, [new_h, new_w],  anti_aliasing=True)
+
             if index in indexes:
-                dataset_train.append(resize(img_original, [new_h, new_w], anti_aliasing=True))
+                dataset_train.append(img_original)
                 labels_train.append(get_class_by_path(path))
             else:
-                dataset_test.append(resize(img_original, [new_h, new_w], anti_aliasing=True))
+                dataset_test.append(img_original)
                 labels_test.append(get_class_by_path(path))
 
     # return train & test dataset, train & test labels
+    print('Data loaded')
     return dataset_train, labels_train, dataset_test, labels_test, len(glob.glob(dataset_dir + '/*'))
 
 
@@ -102,6 +106,7 @@ def dataset_mask(dataset_train, dataset_test, histogram = False):
     dataset_test_mask = list(map(helpers.hand_mask, dataset_test))
 
     # return mask dataset train & test
+    print('Mask done')
     return dataset_train_mask, dataset_test_mask
 
 
@@ -118,5 +123,6 @@ def dataset_contours(dataset_train_mask, dataset_test_mask, dataset_train, datas
     dataset_train_contour = [i[1] for i in train_packed]
 
     # return contours for masked dataset and for original dataset
+    print('Contours done')
     return dataset_train_mask_contour, dataset_train_contour, dataset_test_mask_contour, dataset_test_contour
 
