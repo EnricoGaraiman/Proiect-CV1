@@ -6,7 +6,7 @@ rgb2gray = lambda img: np.uint8(0.299 * img[:, :, 0] + 0.587 * img[:, :, 1] + 0.
 
 def hand_mask(img):
     # return mask for image
-    mask = img[..., 0] > 90/255
+    mask = img[..., 0] > 90 / 255
     mask[mask > 0] = 255
 
     return mask
@@ -32,9 +32,11 @@ def hand_contour(img, img_orig):
 def crop_img(img, rect):
     return img[rect[1]:(rect[1] + rect[3]), rect[0]:(rect[0] + rect[2])]
 
+
 def get_dimensions_for_resize(dataset_train, dataset_test):
     min_w = 0
     min_h = 0
+
     for img in dataset_train:
         if np.shape(img)[1] > min_w:
             min_w = np.shape(img)[1]
@@ -45,4 +47,5 @@ def get_dimensions_for_resize(dataset_train, dataset_test):
             min_w = np.shape(img)[1]
             min_h = np.shape(img)[0]
 
+    print("Resize dims:", min_w, min_h)
     return min_w, min_h

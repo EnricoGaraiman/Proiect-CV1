@@ -9,7 +9,7 @@ import numpy as np
 
 def get_class_by_path(path):
     # get class index based on path name
-    return path.split('/')[1].split('\\')[0]
+    return int(path.split('/')[1].split('\\')[0])
 
 
 def get_train_and_test_dataset(dataset_dir, percent, scale_factor):
@@ -19,7 +19,7 @@ def get_train_and_test_dataset(dataset_dir, percent, scale_factor):
     labels_test = []
 
     # get random indexes
-    random.seed(42) #42
+    random.seed(101)
     indexes = random.sample(range(0, 9), percent)
 
     # read all data and split in train and set based on random indexes
