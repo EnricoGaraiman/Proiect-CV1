@@ -43,7 +43,7 @@ def svm_classification(train_features, labels_train, test_features, labels_test)
 def knn_classification(train_features, labels_train, test_features, labels_test):
     # KNN
     classifier = KNeighborsClassifier(
-        n_neighbors=5,
+        n_neighbors=1,
         metric='minkowski',
         p=2,
         algorithm='brute',
