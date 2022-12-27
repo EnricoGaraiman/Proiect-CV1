@@ -3,6 +3,7 @@ import src.features as features
 import src.classification as classification
 import src.helpers as helpers
 from sklearn.utils import shuffle
+import numpy as np
 
 # ___________________________________________
 # PARAMETERS
@@ -33,8 +34,9 @@ if __name__ == '__main__':
     # compute HOG on dataset train original cropped
     # width, height = helpers.get_dimensions_for_resize(dataset_train_contour, dataset_test_contour)
     width, height = 128, 256
-    train_features, train_images_hog = features.extract_features_hog(dataset_train_mask_contour, width, height, False)
-    test_features, test_images_hog = features.extract_features_hog(dataset_test_mask_contour, width, height, False)
+    train_features, train_images_hog = features.extract_features_hog(dataset_train_mask_contour, width, height, True)
+    test_features, test_images_hog = features.extract_features_hog(dataset_test_mask_contour, width, height, True)
+    print(np.shape(train_features), np.shape(test_features))
 
     # random data
     train_features, labels_train = shuffle(train_features, labels_train)
@@ -47,4 +49,7 @@ if __name__ == '__main__':
     classification.knn_classification(train_features, labels_train, test_features, labels_test)
 
     # classification with K Means
-    classification.kmeans_classification(train_features, labels_train, test_features, labels_test)
+    # classification.kmeans_classification(train_features, labels_train, test_features, labels_test)
+
+    # MLP
+    # classification.mlp_classification(train_features, labels_train, test_features, labels_test)
