@@ -36,7 +36,7 @@ if __name__ == '__main__':
     width, height = 128, 256
     train_features, train_images_hog = features.extract_features_hog(dataset_train_mask_contour, width, height, True)
     test_features, test_images_hog = features.extract_features_hog(dataset_test_mask_contour, width, height, True)
-    print(np.shape(train_features), np.shape(test_features))
+    # print(np.shape(train_features), np.shape(test_features))
 
     # random data
     train_features, labels_train = shuffle(train_features, labels_train)
@@ -52,4 +52,4 @@ if __name__ == '__main__':
     # classification.kmeans_classification(train_features, labels_train, test_features, labels_test)
 
     # MLP
-    # classification.mlp_classification(train_features, labels_train, test_features, labels_test)
+    classification.mlp_classification(train_features, labels_train, test_features, labels_test)

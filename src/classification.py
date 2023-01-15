@@ -110,7 +110,7 @@ def kmeans_classification(train_features, labels_train, test_features, labels_te
 def mlp_classification(train_features, labels_train, test_features, labels_test):
     # MLP
     classifier = MLPClassifier(
-        random_state=1,
+        random_state=100,
         max_iter=300,
         hidden_layer_sizes=[2000, 800, 400, 40],
         activation='relu',

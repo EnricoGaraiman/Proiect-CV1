@@ -13,7 +13,7 @@ def extract_features_hog(dataset, width, height, example=False):
         # set same dimensions and HOG will return same dimension of features
         image = resize(image, [height, width])
 
-        fd, hog_image = hog(image, orientations=4, pixels_per_cell=(4, 4),
+        fd, hog_image = hog(image, orientations=4, pixels_per_cell=(16, 8),
                             cells_per_block=(2, 2), visualize=True) #, channel_axis=-1
 
         images_hog.append(hog_image)
