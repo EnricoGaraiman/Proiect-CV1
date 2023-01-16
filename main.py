@@ -48,8 +48,5 @@ if __name__ == '__main__':
     # classification with KNN
     classification.knn_classification(train_features, labels_train, test_features, labels_test)
 
-    # classification with K Means
-    # classification.kmeans_classification(train_features, labels_train, test_features, labels_test)
-
-    # MLP
+    # classification with MLP
     classification.mlp_classification(train_features, labels_train, test_features, labels_test)
